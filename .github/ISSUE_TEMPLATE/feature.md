@@ -13,3 +13,7 @@ assignees: ""
 ## Critères d'acceptation
 
 - [ ]
+
+## Maquette
+
+<!-- Capture de la partie concernée, si elle existe. -->
