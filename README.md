@@ -32,6 +32,7 @@ Sous Windows (PowerShell) : `Copy-Item .env.example .env`
 ```
 
 Cette commande peut être relancée à tout moment pour remettre la base dans son état d'origine.
+Arrêter le serveur de développement avant de la relancer.
 
 ## Lancement
 
