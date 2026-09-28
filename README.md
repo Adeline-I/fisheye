@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FishEye
 
-## Getting Started
+Prototype du site FishEye, une plateforme de photographes freelances.
 
-First, run the development server:
+## Prérequis
+
+- Node.js 24
+- pnpm
+
+## Installation
+
+1. Cloner le projet et installer les dépendances :
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/Adeline-I/fisheye.git
+   cd fisheye
+   pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Créer le fichier `.env` à partir du modèle :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sous Windows (PowerShell) : `Copy-Item .env.example .env`
 
-## Learn More
+3. Créer et remplir la base de données :
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+   pnpm db:setup
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cette commande peut être relancée à tout moment pour remettre la base dans son état d'origine.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Lancement
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le site est ensuite accessible sur http://localhost:3000.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Commandes utiles
+
+| Commande        | Rôle                                    |
+| --------------- | --------------------------------------- |
+| `pnpm dev`      | Lance le site en développement          |
+| `pnpm build`    | Prépare la version de production        |
+| `pnpm start`    | Lance la version de production          |
+| `pnpm lint`     | Vérifie la qualité du code              |
+| `pnpm db:setup` | Crée ou remet à zéro la base de données |
+
+## En cas de problème
+
+Si `pnpm install` signale des paquets bloqués (« Ignored build scripts »), lancer `pnpm approve-builds` et les autoriser.
