@@ -8,9 +8,6 @@ const Home = async () => {
     <>
       <Header title="Nos photographes" />
       <main>
-        <button type="button" className="button">
-          Contactez-moi
-        </button>
         <ul>
           {photographers.map((photographer) => (
             <li key={photographer.id}>{photographer.name}</li>
