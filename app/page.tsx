@@ -1,18 +1,23 @@
+import Header from "@/components/Header/Header";
 import { getAllPhotographers } from "@/lib/prisma-db";
 
-/** Page temporaire : vérifie la connexion à la base (remplacée à l'issue #3). */
 const Home = async () => {
   const photographers = await getAllPhotographers();
 
   return (
-    <main>
-      <h1>Photographes</h1>
-      <ul>
-        {photographers.map((photographer) => (
-          <li key={photographer.id}>{photographer.name}</li>
-        ))}
-      </ul>
-    </main>
+    <>
+      <Header title="Nos photographes" />
+      <main>
+        <button type="button" className="button">
+          Contactez-moi
+        </button>
+        <ul>
+          {photographers.map((photographer) => (
+            <li key={photographer.id}>{photographer.name}</li>
+          ))}
+        </ul>
+      </main>
+    </>
   );
 };
 
