@@ -1,0 +1,17 @@
+.main {
+  padding: 4.5rem 6.25rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  row-gap: 4.6875rem;
+  column-gap: 1.25rem;
+}
+
+@media (max-width: 75rem) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
