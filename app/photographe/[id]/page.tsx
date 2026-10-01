@@ -1,8 +1,10 @@
 import Header from "@/components/Header/Header";
+import PhotographerProfile from "@/components/PhotographerProfile/PhotographerProfile";
 import { getAllMediasForPhotographer, getPhotographer } from "@/lib/prisma-db";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import styles from "./page.module.css";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -35,8 +37,8 @@ const PhotographerPage = async ({ params }: Props) => {
   return (
     <>
       <Header />
-      <main>
-        <h1>{photographer.name}</h1>
+      <main className={styles.main}>
+        <PhotographerProfile photographer={photographer} />
         <p>{medias.length} médias</p>
       </main>
     </>
