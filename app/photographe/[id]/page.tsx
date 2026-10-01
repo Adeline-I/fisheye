@@ -1,4 +1,5 @@
 import Header from "@/components/Header/Header";
+import MediaCard from "@/components/MediaCard/MediaCard";
 import PhotographerProfile from "@/components/PhotographerProfile/PhotographerProfile";
 import { getAllMediasForPhotographer, getPhotographer } from "@/lib/prisma-db";
 import type { Metadata } from "next";
@@ -39,7 +40,13 @@ const PhotographerPage = async ({ params }: Props) => {
       <Header />
       <main className={styles.main}>
         <PhotographerProfile photographer={photographer} />
-        <p>{medias.length} médias</p>
+        <ul className={styles.gallery}>
+          {medias.map((media) => (
+            <li key={media.id}>
+              <MediaCard media={media} />
+            </li>
+          ))}
+        </ul>
       </main>
     </>
   );
