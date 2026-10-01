@@ -14,15 +14,6 @@
   text-decoration: none;
 }
 
-.portrait {
-  width: 12.5rem;
-  height: 12.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0.5rem 1.25rem -0.25rem
-    color-mix(in srgb, var(--color-black) 25%, transparent);
-}
-
 .name {
   color: var(--color-secondary);
   font-size: 2.25rem;
