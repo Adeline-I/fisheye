@@ -49,7 +49,7 @@ const PhotographerPage = async ({ params }: Props) => {
         <PhotographerProfile photographer={photographer} />
         <ul className={styles.gallery}>
           {medias.map((media) => (
-            <li key={media.id}>
+            <li key={`media-${media.id}`}>
               <MediaCard media={media} />
             </li>
           ))}
