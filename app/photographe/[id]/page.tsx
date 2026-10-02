@@ -12,9 +12,14 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
+const DIGITS_ONLY = /^\d+$/;
+const MAX_DB_ID = 2147483647;
+
 const findPhotographer = cache(async (id: string) => {
+  if (!DIGITS_ONLY.test(id)) notFound();
+
   const photographerId = Number(id);
-  if (!Number.isInteger(photographerId)) notFound();
+  if (photographerId > MAX_DB_ID) notFound();
 
   const photographer = await getPhotographer(photographerId);
   if (!photographer) notFound();
