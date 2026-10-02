@@ -1,0 +1,33 @@
+.profile {
+  display: grid;
+  grid-template-columns: 1fr auto minmax(12.5rem, 1fr);
+  align-items: start;
+  padding: 3.5rem 3.125rem;
+  border-radius: 0.3125rem;
+  background-color: var(--color-grey-light);
+}
+
+.profile img {
+  justify-self: end;
+}
+
+.name {
+  color: var(--color-secondary);
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.location {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+}
+
+.tagline {
+  margin-top: 1rem;
+  color: var(--color-grey-dark);
+  font-size: 1.125rem;
+}
+
+.contact {
+  margin-top: 5rem;
+}

@@ -1,5 +1,5 @@
+import Portrait from "@/components/Portrait/Portrait";
 import type { Photographer } from "@/generated/prisma/client";
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./PhotographerCard.module.css";
 
@@ -13,13 +13,7 @@ const PhotographerCard = ({ photographer }: PhotographerCardProps) => {
   return (
     <article className={styles.card}>
       <Link href={`/photographe/${id}`} className={styles.link}>
-        <Image
-          src={`/assets/${portrait}`}
-          alt=""
-          width={200}
-          height={200}
-          className={styles.portrait}
-        />
+        <Portrait fileName={portrait} alt="" />
         <h2 className={styles.name}>{name}</h2>
       </Link>
       <p className={styles.location}>{`${city}, ${country}`}</p>

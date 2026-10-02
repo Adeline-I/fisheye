@@ -12,7 +12,7 @@ const Home = async () => {
       <main className={styles.main}>
         <ul className={styles.list}>
           {photographers.map((photographer) => (
-            <li key={photographer.id}>
+            <li key={`photographer-${photographer.id}`}>
               <PhotographerCard photographer={photographer} />
             </li>
           ))}
