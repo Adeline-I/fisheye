@@ -1,3 +1,4 @@
+import ContactButton from "@/components/ContactButton/ContactButton";
 import Portrait from "@/components/Portrait/Portrait";
 import type { Photographer } from "@/generated/prisma/client";
 import styles from "./PhotographerProfile.module.css";
@@ -18,9 +19,7 @@ const PhotographerProfile = ({ photographer }: PhotographerProfileProps) => {
         <p className={styles.location}>{`${city}, ${country}`}</p>
         <p className={styles.tagline}>{tagline}</p>
       </div>
-      <button type="button" className={`button ${styles.contact}`}>
-        Contactez-moi
-      </button>
+      <ContactButton photographerName={name} className={styles.contact} />
       <Portrait fileName={portrait} alt={name} />
     </section>
   );

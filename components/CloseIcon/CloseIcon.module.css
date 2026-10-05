@@ -1,0 +1,5 @@
+.close {
+  width: 2.625rem;
+  height: 2.625rem;
+  flex-shrink: 0;
+}
