@@ -1,5 +1,6 @@
 import CloseIcon from "@/components/CloseIcon/CloseIcon";
 import { useEffect, useRef } from "react";
+import styles from "./ContactModal.module.css";
 
 type ContactModalProps = {
   photographerName: string;
@@ -28,47 +29,70 @@ const ContactModal = ({
   };
 
   return (
-    <dialog ref={dialogRef} aria-labelledby="contact-title" onClose={onClose}>
-      <h2 id="contact-title">
+    <dialog
+      ref={dialogRef}
+      className={styles.modal}
+      aria-labelledby="contact-title"
+      onClose={onClose}
+    >
+      <h2 id="contact-title" className={styles.title}>
         Contactez-moi
         <br />
         {photographerName}
       </h2>
       <button
         type="button"
+        className={styles.close}
         aria-label="Fermer le formulaire de contact"
         onClick={onClose}
       >
         <CloseIcon />
       </button>
-      <form action={handleSubmit}>
-        <label htmlFor="contact-first-name">Prénom</label>
+      <form className={styles.form} action={handleSubmit}>
+        <label htmlFor="contact-first-name" className={styles.label}>
+          Prénom
+        </label>
         <input
           id="contact-first-name"
+          className={styles.field}
           name="firstName"
           type="text"
           autoComplete="given-name"
           required
         />
-        <label htmlFor="contact-last-name">Nom</label>
+        <label htmlFor="contact-last-name" className={styles.label}>
+          Nom
+        </label>
         <input
           id="contact-last-name"
+          className={styles.field}
           name="lastName"
           type="text"
           autoComplete="family-name"
           required
         />
-        <label htmlFor="contact-email">Email</label>
+        <label htmlFor="contact-email" className={styles.label}>
+          Email
+        </label>
         <input
           id="contact-email"
+          className={styles.field}
           name="email"
           type="email"
           autoComplete="email"
           required
         />
-        <label htmlFor="contact-message">Votre message</label>
-        <textarea id="contact-message" name="message" rows={5} required />
-        <button type="submit" className="button">
+        <label htmlFor="contact-message" className={styles.label}>
+          Votre message
+        </label>
+        <textarea
+          id="contact-message"
+          className={`${styles.field} ${styles.message}`}
+          name="message"
+          rows={4}
+          required
+        />
+        <button type="submit" className={`button ${styles.submit}`}>
           Envoyer
         </button>
       </form>
