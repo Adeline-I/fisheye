@@ -12,7 +12,11 @@ const PhotographerCard = ({ photographer }: PhotographerCardProps) => {
 
   return (
     <article className={styles.card}>
-      <Link href={`/photographe/${id}`} className={styles.link}>
+      <Link
+        href={`/photographe/${id}`}
+        className={styles.link}
+        aria-label={name}
+      >
         <Portrait fileName={portrait} alt={name} />
         <h2 className={styles.name}>{name}</h2>
       </Link>
