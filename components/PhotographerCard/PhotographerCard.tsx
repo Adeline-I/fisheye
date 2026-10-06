@@ -13,7 +13,7 @@ const PhotographerCard = ({ photographer }: PhotographerCardProps) => {
   return (
     <article className={styles.card}>
       <Link href={`/photographe/${id}`} className={styles.link}>
-        <Portrait fileName={portrait} alt="" />
+        <Portrait fileName={portrait} alt={name} />
         <h2 className={styles.name}>{name}</h2>
       </Link>
       <p className={styles.location}>{`${city}, ${country}`}</p>
