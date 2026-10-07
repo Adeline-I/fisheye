@@ -1,0 +1,18 @@
+import styles from "./ArrowLeftIcon.module.css";
+
+const ArrowLeftIcon = () => (
+  <svg
+    viewBox="0 0 30 48"
+    aria-hidden="true"
+    focusable="false"
+    className={styles.arrow}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M29.64 42.36L11.32 24L29.64 5.64L24 0L0 24L24 48L29.64 42.36Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export default ArrowLeftIcon;
