@@ -63,6 +63,7 @@ const Lightbox = ({
               width={0}
               height={0}
               sizes="100vw"
+              loading="eager"
               className={styles.media}
             />
           ) : (
