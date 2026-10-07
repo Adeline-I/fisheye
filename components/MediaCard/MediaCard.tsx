@@ -1,4 +1,4 @@
-import HeartIcon from "@/components/HeartIcon/HeartIcon";
+import HeartIcon from "@/components/icons/HeartIcon/HeartIcon";
 import type { Media } from "@/generated/prisma/client";
 import Image from "next/image";
 import styles from "./MediaCard.module.css";

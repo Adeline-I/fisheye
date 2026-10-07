@@ -1,4 +1,4 @@
-import CloseIcon from "@/components/CloseIcon/CloseIcon";
+import CloseIcon from "@/components/icons/CloseIcon/CloseIcon";
 import { useEffect, useRef } from "react";
 import styles from "./ContactModal.module.css";
 
