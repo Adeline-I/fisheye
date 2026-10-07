@@ -1,5 +1,4 @@
-import CloseIcon from "@/components/icons/CloseIcon/CloseIcon";
-import { useEffect, useRef } from "react";
+import Modal from "@/components/Modal/Modal";
 import styles from "./ContactModal.module.css";
 
 type ContactModalProps = {
@@ -13,41 +12,24 @@ const ContactModal = ({
   isOpen,
   onClose,
 }: ContactModalProps) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    if (isOpen && !dialog.open) dialog.showModal();
-    if (!isOpen && dialog.open) dialog.close();
-  }, [isOpen]);
-
   const handleSubmit = (formData: FormData) => {
     console.log(Object.fromEntries(formData));
     onClose();
   };
 
   return (
-    <dialog
-      ref={dialogRef}
-      className={styles.modal}
-      aria-labelledby="contact-title"
+    <Modal
+      isOpen={isOpen}
       onClose={onClose}
+      closeLabel="Fermer le formulaire de contact"
+      className={styles.modal}
+      ariaLabelledBy="contact-title"
     >
       <h2 id="contact-title" className={styles.title}>
         Contactez-moi
         <br />
         {photographerName}
       </h2>
-      <button
-        type="button"
-        className={styles.close}
-        aria-label="Fermer le formulaire de contact"
-        onClick={onClose}
-      >
-        <CloseIcon />
-      </button>
       <form className={styles.form} action={handleSubmit}>
         <label htmlFor="contact-first-name" className={styles.label}>
           Prénom
@@ -96,7 +78,7 @@ const ContactModal = ({
           Envoyer
         </button>
       </form>
-    </dialog>
+    </Modal>
   );
 };
 
