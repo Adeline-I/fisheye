@@ -1,4 +1,4 @@
-import HeartIcon from "@/components/HeartIcon/HeartIcon";
+import HeartIcon from "@/components/icons/HeartIcon/HeartIcon";
 import styles from "./PhotographerStats.module.css";
 
 type PhotographerStatsProps = {

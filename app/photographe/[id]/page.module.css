@@ -2,16 +2,3 @@
   padding-inline: 6.25rem;
   padding-bottom: 6.25rem;
 }
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem 5.9375rem;
-  margin-top: 6.3125rem;
-}
-
-@media (max-width: 75rem) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
