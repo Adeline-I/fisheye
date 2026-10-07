@@ -2,6 +2,7 @@ import ArrowIcon from "@/components/icons/ArrowIcon/ArrowIcon";
 import Modal from "@/components/Modal/Modal";
 import type { Media } from "@/generated/prisma/client";
 import Image from "next/image";
+import type { KeyboardEvent } from "react";
 import styles from "./Lightbox.module.css";
 
 type LightboxProps = {
@@ -29,6 +30,13 @@ const Lightbox = ({
     onNavigate((currentIndex + 1) % medias.length);
   };
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDialogElement>) => {
+    if (event.target instanceof HTMLVideoElement) return;
+
+    if (event.key === "ArrowLeft") showPrevious();
+    if (event.key === "ArrowRight") showNext();
+  };
+
   return (
     <Modal
       isOpen={media !== undefined}
@@ -36,6 +44,7 @@ const Lightbox = ({
       closeLabel="Fermer la vue agrandie"
       className={styles.lightbox}
       ariaLabel="Vue agrandie du média"
+      onKeyDown={handleKeyDown}
     >
       {media && (
         <div className={styles.content}>

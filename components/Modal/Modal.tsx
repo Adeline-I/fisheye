@@ -1,5 +1,5 @@
 import CloseIcon from "@/components/icons/CloseIcon/CloseIcon";
-import { type ReactNode, useEffect, useRef } from "react";
+import { type KeyboardEvent, type ReactNode, useEffect, useRef } from "react";
 import styles from "./Modal.module.css";
 
 type ModalProps = {
@@ -9,6 +9,7 @@ type ModalProps = {
   className: string;
   ariaLabel?: string;
   ariaLabelledBy?: string;
+  onKeyDown?: (event: KeyboardEvent<HTMLDialogElement>) => void;
   children: ReactNode;
 };
 
@@ -19,6 +20,7 @@ const Modal = ({
   className,
   ariaLabel,
   ariaLabelledBy,
+  onKeyDown,
   children,
 }: ModalProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -38,6 +40,7 @@ const Modal = ({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       onClose={onClose}
+      onKeyDown={onKeyDown}
     >
       <button
         type="button"
