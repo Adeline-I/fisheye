@@ -1,3 +1,13 @@
+.open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-radius: 0.3125rem;
+  background: none;
+  cursor: pointer;
+}
+
 .media {
   width: 100%;
   height: auto;
