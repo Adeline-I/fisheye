@@ -15,14 +15,28 @@ type MediaGalleryProps = {
 const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
   const [mediaList, setMediaList] = useState(medias);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  const [errorMediaId, setErrorMediaId] = useState<number | null>(null);
   const totalLikes = mediaList.reduce((total, media) => total + media.likes, 0);
 
-  const addLike = (mediaId: number) => {
-    setMediaList((list) =>
-      list.map((media) =>
-        media.id === mediaId ? { ...media, likes: media.likes + 1 } : media,
-      ),
-    );
+  const addLike = async (media: Media) => {
+    try {
+      const response = await fetch(`/api/medias/${media.id}/likes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ likes: media.likes + 1 }),
+      });
+
+      if (!response.ok) throw new Error();
+
+      const { likes } = await response.json();
+
+      setMediaList((list) =>
+        list.map((item) => (item.id === media.id ? { ...item, likes } : item)),
+      );
+      setErrorMediaId(null);
+    } catch {
+      setErrorMediaId(media.id);
+    }
   };
 
   return (
@@ -32,8 +46,9 @@ const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
           <li key={`media-${media.id}`}>
             <MediaCard
               media={media}
+              hasError={errorMediaId === media.id}
               onOpen={() => setCurrentIndex(index)}
-              onLike={() => addLike(media.id)}
+              onLike={() => addLike(media)}
             />
           </li>
         ))}

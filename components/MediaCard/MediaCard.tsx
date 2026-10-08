@@ -5,11 +5,12 @@ import styles from "./MediaCard.module.css";
 
 type MediaCardProps = {
   media: Media;
+  hasError: boolean;
   onOpen: () => void;
   onLike: () => void;
 };
 
-const MediaCard = ({ media, onOpen, onLike }: MediaCardProps) => {
+const MediaCard = ({ media, hasError, onOpen, onLike }: MediaCardProps) => {
   const { title, image, video, likes } = media;
 
   return (
@@ -52,6 +53,11 @@ const MediaCard = ({ media, onOpen, onLike }: MediaCardProps) => {
           </button>
         </p>
       </div>
+      {hasError && (
+        <p role="alert" className={styles.error}>
+          Le j&apos;aime n&apos;a pas pu être enregistré.
+        </p>
+      )}
     </article>
   );
 };

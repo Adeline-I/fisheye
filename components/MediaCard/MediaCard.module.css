@@ -46,3 +46,8 @@
   color: inherit;
   cursor: pointer;
 }
+
+.error {
+  color: var(--color-primary);
+  font-size: 1rem;
+}
