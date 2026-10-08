@@ -2,16 +2,19 @@
 
 import Lightbox from "@/components/Lightbox/Lightbox";
 import MediaCard from "@/components/MediaCard/MediaCard";
+import PhotographerStats from "@/components/PhotographerStats/PhotographerStats";
 import type { Media } from "@/generated/prisma/client";
 import { useState } from "react";
 import styles from "./MediaGallery.module.css";
 
 type MediaGalleryProps = {
   medias: Media[];
+  price: number;
 };
 
-const MediaGallery = ({ medias }: MediaGalleryProps) => {
+const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  const totalLikes = medias.reduce((total, media) => total + media.likes, 0);
 
   return (
     <>
@@ -28,6 +31,7 @@ const MediaGallery = ({ medias }: MediaGalleryProps) => {
         onNavigate={setCurrentIndex}
         onClose={() => setCurrentIndex(null)}
       />
+      <PhotographerStats totalLikes={totalLikes} price={price} />
     </>
   );
 };

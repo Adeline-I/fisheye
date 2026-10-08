@@ -1,7 +1,6 @@
 import Header from "@/components/Header/Header";
 import MediaGallery from "@/components/MediaGallery/MediaGallery";
 import PhotographerProfile from "@/components/PhotographerProfile/PhotographerProfile";
-import PhotographerStats from "@/components/PhotographerStats/PhotographerStats";
 import { getAllMediasForPhotographer, getPhotographer } from "@/lib/prisma-db";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -40,15 +39,13 @@ const PhotographerPage = async ({ params }: Props) => {
   const { id } = await params;
   const photographer = await findPhotographer(id);
   const medias = await getAllMediasForPhotographer(photographer.id);
-  const totalLikes = medias.reduce((total, media) => total + media.likes, 0);
 
   return (
     <>
       <Header />
       <main className={styles.main}>
         <PhotographerProfile photographer={photographer} />
-        <MediaGallery medias={medias} />
-        <PhotographerStats totalLikes={totalLikes} price={photographer.price} />
+        <MediaGallery medias={medias} price={photographer.price} />
       </main>
     </>
   );
