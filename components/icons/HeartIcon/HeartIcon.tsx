@@ -1,10 +1,15 @@
 import styles from "./HeartIcon.module.css";
 
-const HeartIcon = () => (
+type HeartIconProps = {
+  decorative?: boolean;
+};
+
+const HeartIcon = ({ decorative = false }: HeartIconProps) => (
   <svg
     viewBox="0 0 21 24"
-    role="img"
-    aria-label="j'aime"
+    {...(decorative
+      ? { "aria-hidden": true, focusable: false }
+      : { role: "img", "aria-label": "j'aime" })}
     className={styles.heart}
     xmlns="http://www.w3.org/2000/svg"
   >

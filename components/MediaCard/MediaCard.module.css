@@ -37,3 +37,17 @@
   gap: 0.3125rem;
   font-weight: 500;
 }
+
+.like {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.error {
+  color: var(--color-primary);
+  font-size: 1rem;
+}
