@@ -1,15 +1,15 @@
 "use server";
 
-import { updateNumberOfLikes } from "@/lib/prisma-db";
+import { incrementNumberOfLikes } from "@/lib/prisma-db";
 import { refresh } from "next/cache";
 
 /**
- * Enregistre le nouveau nombre de likes d'un média et met à jour la page.
+ * Ajoute un like à un média et met à jour la page.
  * Renvoie le nombre enregistré, ou un message d'erreur si l'enregistrement échoue.
  */
-export const saveLikes = async (mediaId: number, likes: number) => {
+export const likeMedia = async (mediaId: number) => {
   try {
-    const media = await updateNumberOfLikes(mediaId, likes);
+    const media = await incrementNumberOfLikes(mediaId);
 
     refresh();
 

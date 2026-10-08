@@ -4,7 +4,7 @@ import Lightbox from "@/components/Lightbox/Lightbox";
 import MediaCard from "@/components/MediaCard/MediaCard";
 import PhotographerStats from "@/components/PhotographerStats/PhotographerStats";
 import type { Media } from "@/generated/prisma/client";
-import { saveLikes } from "@/lib/actions";
+import { likeMedia } from "@/lib/actions";
 import { useState } from "react";
 import styles from "./MediaGallery.module.css";
 
@@ -19,23 +19,23 @@ const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
   const [errorMediaId, setErrorMediaId] = useState<number | null>(null);
   const totalLikes = mediaList.reduce((total, media) => total + media.likes, 0);
 
-  const addLike = async (media: Media) => {
+  const addLike = async (mediaId: number) => {
     try {
-      const result = await saveLikes(media.id, media.likes + 1);
+      const result = await likeMedia(mediaId);
 
       if ("error" in result) {
-        setErrorMediaId(media.id);
+        setErrorMediaId(mediaId);
         return;
       }
 
       setMediaList((list) =>
-        list.map((item) =>
-          item.id === media.id ? { ...item, likes: result.likes } : item,
+        list.map((media) =>
+          media.id === mediaId ? { ...media, likes: result.likes } : media,
         ),
       );
-      setErrorMediaId(null);
+      setErrorMediaId((id) => (id === mediaId ? null : id));
     } catch {
-      setErrorMediaId(media.id);
+      setErrorMediaId(mediaId);
     }
   };
 
@@ -48,7 +48,7 @@ const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
               media={media}
               hasError={errorMediaId === media.id}
               onOpen={() => setCurrentIndex(index)}
-              onLike={() => addLike(media)}
+              onLike={() => addLike(media.id)}
             />
           </li>
         ))}
