@@ -4,6 +4,7 @@ import Lightbox from "@/components/Lightbox/Lightbox";
 import MediaCard from "@/components/MediaCard/MediaCard";
 import PhotographerStats from "@/components/PhotographerStats/PhotographerStats";
 import type { Media } from "@/generated/prisma/client";
+import { saveLikes } from "@/lib/actions";
 import { useState } from "react";
 import styles from "./MediaGallery.module.css";
 
@@ -20,18 +21,17 @@ const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
 
   const addLike = async (media: Media) => {
     try {
-      const response = await fetch(`/api/medias/${media.id}/likes`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ likes: media.likes + 1 }),
-      });
+      const result = await saveLikes(media.id, media.likes + 1);
 
-      if (!response.ok) throw new Error();
-
-      const { likes } = await response.json();
+      if ("error" in result) {
+        setErrorMediaId(media.id);
+        return;
+      }
 
       setMediaList((list) =>
-        list.map((item) => (item.id === media.id ? { ...item, likes } : item)),
+        list.map((item) =>
+          item.id === media.id ? { ...item, likes: result.likes } : item,
+        ),
       );
       setErrorMediaId(null);
     } catch {
