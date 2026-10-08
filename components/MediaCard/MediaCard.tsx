@@ -6,9 +6,10 @@ import styles from "./MediaCard.module.css";
 type MediaCardProps = {
   media: Media;
   onOpen: () => void;
+  onLike: () => void;
 };
 
-const MediaCard = ({ media, onOpen }: MediaCardProps) => {
+const MediaCard = ({ media, onOpen, onLike }: MediaCardProps) => {
   const { title, image, video, likes } = media;
 
   return (
@@ -41,7 +42,14 @@ const MediaCard = ({ media, onOpen }: MediaCardProps) => {
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.likes}>
           {likes}
-          <HeartIcon />
+          <button
+            type="button"
+            className={styles.like}
+            aria-label={`J'aime ${title}`}
+            onClick={onLike}
+          >
+            <HeartIcon decorative />
+          </button>
         </p>
       </div>
     </article>
