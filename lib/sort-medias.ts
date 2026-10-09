@@ -1,6 +1,8 @@
 import type { Media } from "@/generated/prisma/client";
 
-export type SortOption = "popularity" | "date" | "title";
+export const SORT_OPTIONS = ["popularity", "date", "title"] as const;
+
+export type SortOption = (typeof SORT_OPTIONS)[number];
 
 const compareMedias: Record<SortOption, (a: Media, b: Media) => number> = {
   popularity: (a, b) => b.likes - a.likes,
