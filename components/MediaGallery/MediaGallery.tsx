@@ -5,6 +5,7 @@ import MediaCard from "@/components/MediaCard/MediaCard";
 import PhotographerStats from "@/components/PhotographerStats/PhotographerStats";
 import type { Media } from "@/generated/prisma/client";
 import { likeMedia } from "@/lib/actions";
+import { sortMedias } from "@/lib/sort-medias";
 import { useState } from "react";
 import styles from "./MediaGallery.module.css";
 
@@ -14,7 +15,9 @@ type MediaGalleryProps = {
 };
 
 const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
-  const [mediaList, setMediaList] = useState(medias);
+  const [mediaList, setMediaList] = useState(() =>
+    sortMedias(medias, "popularity"),
+  );
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [errorMediaId, setErrorMediaId] = useState<number | null>(null);
   const totalLikes = mediaList.reduce((total, media) => total + media.likes, 0);
