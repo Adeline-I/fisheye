@@ -4,10 +4,13 @@ export const SORT_OPTIONS = ["popularity", "date", "title"] as const;
 
 export type SortOption = (typeof SORT_OPTIONS)[number];
 
+const compareTitles = (a: Media, b: Media) =>
+  a.title.localeCompare(b.title, "fr");
+
 const compareMedias: Record<SortOption, (a: Media, b: Media) => number> = {
-  popularity: (a, b) => b.likes - a.likes,
-  date: (a, b) => b.date.localeCompare(a.date),
-  title: (a, b) => a.title.localeCompare(b.title, "fr"),
+  popularity: (a, b) => b.likes - a.likes || compareTitles(a, b),
+  date: (a, b) => b.date.localeCompare(a.date) || compareTitles(a, b),
+  title: compareTitles,
 };
 
 /**
