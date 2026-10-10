@@ -59,7 +59,7 @@ const SortMenu = ({ sortBy, onSort }: SortMenuProps) => {
         break;
       case "Enter":
       case " ":
-        selectOption(orderedOptions[activeIndex]);
+        if (!event.repeat) selectOption(orderedOptions[activeIndex]);
         break;
       case "Escape":
         closeMenu();
