@@ -3,14 +3,24 @@ import type { Media } from "@/generated/prisma/client";
 import Image from "next/image";
 import styles from "./MediaCard.module.css";
 
+const IMAGE_SIZES =
+  "(max-width: 75rem) calc((100vw - 18.4375rem) / 2), calc((100vw - 24.375rem) / 3)";
+
 type MediaCardProps = {
   media: Media;
   hasError: boolean;
+  isPriority: boolean;
   onOpen: () => void;
   onLike: () => void;
 };
 
-const MediaCard = ({ media, hasError, onOpen, onLike }: MediaCardProps) => {
+const MediaCard = ({
+  media,
+  hasError,
+  isPriority,
+  onOpen,
+  onLike,
+}: MediaCardProps) => {
   const { title, image, video, likes } = media;
 
   return (
@@ -27,6 +37,9 @@ const MediaCard = ({ media, hasError, onOpen, onLike }: MediaCardProps) => {
             alt={title}
             width={350}
             height={300}
+            sizes={IMAGE_SIZES}
+            loading={isPriority ? "eager" : "lazy"}
+            fetchPriority={isPriority ? "high" : "auto"}
             className={styles.media}
           />
         ) : (

@@ -62,7 +62,7 @@ const Lightbox = ({
               alt={media.title}
               width={0}
               height={0}
-              sizes="100vw"
+              sizes="calc(100vw - 20.25rem)"
               loading="eager"
               className={styles.media}
             />

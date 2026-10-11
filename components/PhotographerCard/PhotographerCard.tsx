@@ -5,9 +5,13 @@ import styles from "./PhotographerCard.module.css";
 
 type PhotographerCardProps = {
   photographer: Photographer;
+  isPriority?: boolean;
 };
 
-const PhotographerCard = ({ photographer }: PhotographerCardProps) => {
+const PhotographerCard = ({
+  photographer,
+  isPriority = false,
+}: PhotographerCardProps) => {
   const { id, name, city, country, tagline, price, portrait } = photographer;
 
   return (
@@ -17,7 +21,7 @@ const PhotographerCard = ({ photographer }: PhotographerCardProps) => {
         className={styles.link}
         aria-label={name}
       >
-        <Portrait fileName={portrait} alt={name} />
+        <Portrait fileName={portrait} alt={name} isPriority={isPriority} />
         <h2 className={styles.name}>{name}</h2>
       </Link>
       <p className={styles.location}>{`${city}, ${country}`}</p>
