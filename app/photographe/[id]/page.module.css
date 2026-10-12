@@ -2,3 +2,9 @@
   padding-inline: 6.25rem;
   padding-bottom: 6.25rem;
 }
+
+@media (max-width: 50rem) {
+  .main {
+    padding-inline: 3.125rem;
+  }
+}

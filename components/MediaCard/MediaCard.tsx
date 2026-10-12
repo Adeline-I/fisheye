@@ -3,15 +3,25 @@ import type { Media } from "@/generated/prisma/client";
 import Image from "next/image";
 import styles from "./MediaCard.module.css";
 
+const IMAGE_SIZES = "(max-width: 50rem) 100vw, (max-width: 75rem) 50vw, 33vw";
+
 type MediaCardProps = {
   media: Media;
   hasError: boolean;
+  isPriority: boolean;
   onOpen: () => void;
   onLike: () => void;
 };
 
-const MediaCard = ({ media, hasError, onOpen, onLike }: MediaCardProps) => {
-  const { title, image, video, likes } = media;
+const MediaCard = ({
+  media,
+  hasError,
+  isPriority,
+  onOpen,
+  onLike,
+}: MediaCardProps) => {
+  const { id, title, image, video, likes } = media;
+  const likesId = `likes-${id}`;
 
   return (
     <article>
@@ -27,6 +37,9 @@ const MediaCard = ({ media, hasError, onOpen, onLike }: MediaCardProps) => {
             alt={title}
             width={350}
             height={300}
+            sizes={IMAGE_SIZES}
+            loading={isPriority ? "eager" : "lazy"}
+            fetchPriority={isPriority ? "high" : "auto"}
             className={styles.media}
           />
         ) : (
@@ -42,11 +55,14 @@ const MediaCard = ({ media, hasError, onOpen, onLike }: MediaCardProps) => {
       <div className={styles.info}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.likes}>
-          {likes}
+          <span id={likesId} aria-live="polite">
+            {likes}
+          </span>
           <button
             type="button"
             className={styles.like}
             aria-label={`J'aime ${title}`}
+            aria-describedby={likesId}
             onClick={onLike}
           >
             <HeartIcon decorative />

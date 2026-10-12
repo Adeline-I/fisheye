@@ -20,7 +20,7 @@ const PhotographerProfile = ({ photographer }: PhotographerProfileProps) => {
         <p className={styles.tagline}>{tagline}</p>
       </div>
       <ContactButton photographerName={name} className={styles.contact} />
-      <Portrait fileName={portrait} alt={name} />
+      <Portrait fileName={portrait} alt={name} isPriority />
     </section>
   );
 };

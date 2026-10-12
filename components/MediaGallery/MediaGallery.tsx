@@ -11,6 +11,7 @@ import { useState } from "react";
 import styles from "./MediaGallery.module.css";
 
 const DEFAULT_SORT: SortOption = "popularity";
+const FIRST_ROW_COUNT = 3;
 
 type MediaGalleryProps = {
   medias: Media[];
@@ -60,6 +61,7 @@ const MediaGallery = ({ medias, price }: MediaGalleryProps) => {
             <MediaCard
               media={media}
               hasError={errorMediaId === media.id}
+              isPriority={index < FIRST_ROW_COUNT}
               onOpen={() => setCurrentIndex(index)}
               onLike={() => addLike(media.id)}
             />

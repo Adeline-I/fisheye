@@ -45,3 +45,18 @@
 .next {
   grid-column: 3;
 }
+
+@media (max-width: 50rem) {
+  .lightbox {
+    padding: 0.625rem 1.09375rem;
+  }
+
+  .content {
+    column-gap: 1.09375rem;
+  }
+
+  .media {
+    max-width: calc(100vw - 12rem);
+    max-height: calc(100vh - 7.675rem);
+  }
+}

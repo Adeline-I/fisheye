@@ -3,6 +3,8 @@ import PhotographerCard from "@/components/PhotographerCard/PhotographerCard";
 import { getAllPhotographers } from "@/lib/prisma-db";
 import styles from "./page.module.css";
 
+const FIRST_ROW_COUNT = 3;
+
 const Home = async () => {
   const photographers = await getAllPhotographers();
 
@@ -11,9 +13,12 @@ const Home = async () => {
       <Header title="Nos photographes" />
       <main className={styles.main}>
         <ul className={styles.list}>
-          {photographers.map((photographer) => (
+          {photographers.map((photographer, index) => (
             <li key={`photographer-${photographer.id}`}>
-              <PhotographerCard photographer={photographer} />
+              <PhotographerCard
+                photographer={photographer}
+                isPriority={index < FIRST_ROW_COUNT}
+              />
             </li>
           ))}
         </ul>

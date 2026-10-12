@@ -10,3 +10,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+@media (max-width: 50rem) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
