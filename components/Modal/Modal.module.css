@@ -25,3 +25,14 @@
   color: inherit;
   cursor: pointer;
 }
+
+@media (max-width: 50rem) {
+  .modal {
+    max-height: calc(100% - 3.875rem);
+  }
+
+  .close {
+    top: 1.125rem;
+    right: 1.09375rem;
+  }
+}
