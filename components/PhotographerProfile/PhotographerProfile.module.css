@@ -48,6 +48,9 @@
   .profile {
     grid-template-columns: 1fr;
     justify-items: center;
+  }
+
+  .profile > div {
     text-align: center;
   }
 
