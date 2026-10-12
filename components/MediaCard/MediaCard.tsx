@@ -20,7 +20,8 @@ const MediaCard = ({
   onOpen,
   onLike,
 }: MediaCardProps) => {
-  const { title, image, video, likes } = media;
+  const { id, title, image, video, likes } = media;
+  const likesId = `likes-${id}`;
 
   return (
     <article>
@@ -54,11 +55,14 @@ const MediaCard = ({
       <div className={styles.info}>
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.likes}>
-          {likes}
+          <span id={likesId} aria-live="polite">
+            {likes}
+          </span>
           <button
             type="button"
             className={styles.like}
             aria-label={`J'aime ${title}`}
+            aria-describedby={likesId}
             onClick={onLike}
           >
             <HeartIcon decorative />

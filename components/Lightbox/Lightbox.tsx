@@ -43,7 +43,7 @@ const Lightbox = ({
       onClose={onClose}
       closeLabel="Fermer la vue agrandie"
       className={styles.lightbox}
-      ariaLabel="Vue agrandie du média"
+      ariaLabel={media && `${media.title}, vue agrandie`}
       onKeyDown={handleKeyDown}
     >
       {media && (
@@ -74,7 +74,9 @@ const Lightbox = ({
               className={styles.media}
             />
           )}
-          <p className={styles.title}>{media.title}</p>
+          <p className={styles.title} aria-live="polite">
+            {media.title}
+          </p>
           <button
             type="button"
             className={`${styles.nav} ${styles.next}`}
