@@ -3,8 +3,7 @@ import type { Media } from "@/generated/prisma/client";
 import Image from "next/image";
 import styles from "./MediaCard.module.css";
 
-const IMAGE_SIZES =
-  "(max-width: 75rem) calc((100vw - 18.4375rem) / 2), calc((100vw - 24.375rem) / 3)";
+const IMAGE_SIZES = "(max-width: 50rem) 100vw, (max-width: 75rem) 50vw, 33vw";
 
 type MediaCardProps = {
   media: Media;
